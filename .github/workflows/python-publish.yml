@@ -10,8 +10,8 @@ on:
     branches:
       - main
     tags:
-      - '*.*.*' # Push events to matching v*, i.e. v1.0, v20.15.10
-
+      - '*.*.*' 
+      
 jobs:
   deploy:
 
@@ -38,6 +38,14 @@ jobs:
 
     - name: Test with pytest
       run: pytest --doctest-modules --junitxml=junit/test-results.xml --cov=confultimate --cov-report=xml --cov-report=html
+
+    - name: Build and publish
+      env:
+        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      run: |
+        python setup.py sdist bdist_wheel
+        twine upload dist/*
 
     - name: Create Release
       id: create_release
@@ -71,11 +79,3 @@ jobs:
         asset_path: dist/*.whl
         asset_name: confultimate-${{ github.ref }}-py3-none-any
         asset_content_type: application/x-wheel+zip
-
-    - name: Build and publish
-      env:
-        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-      run: |
-        python setup.py sdist bdist_wheel
-        twine upload dist/*
