@@ -1,8 +1,11 @@
-import os
+"""
+Main class of the confultimate module
+"""
+
 import json
 from jsonmerge import merge
 
-class ConfUltimate( object ):
+class ConfUltimate( ):
     """A config Manager"""
     __instance = None
 
@@ -14,7 +17,7 @@ class ConfUltimate( object ):
     def load( json_path_list ):
         """Load a config contained in a list of JSON file"""
         jsonmerged = None
-        
+
         if len(json_path_list) < 1 :
             raise Exception('Any configuration file specified')
 
@@ -24,9 +27,9 @@ class ConfUltimate( object ):
         ConfUltimate.__instance = ConfUltimate(jsonmerged)
 
     @staticmethod
-    def getInstance( ):
+    def get_instance( ):
         """Get ConfUltimate instance"""
-        if ConfUltimate.__instance == None:
+        if ConfUltimate.__instance is None:
             raise Exception('ConfUltimate not initalized')
         return ConfUltimate.__instance
 
@@ -35,11 +38,8 @@ class ConfUltimate( object ):
         """Clean the ConfUltimate instance"""
         ConfUltimate.__instance = None
 
-    def getConfig( self ):
+    def get_config( self ):
         """
         Return config string
         """
         return self.__json_data
-
-
-        

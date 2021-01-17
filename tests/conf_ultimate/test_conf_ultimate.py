@@ -22,14 +22,14 @@ def test_multiple_file(resource_path):
     
     ConfUltimate.load([file1, file2])
 
-    assert ConfUltimate.getInstance().getConfig()["conf1"] == "test"
-    assert ConfUltimate.getInstance().getConfig()["conf2"] == "test"
-    assert ConfUltimate.getInstance().getConfig()["conf_commun"] == "conf2"
-    assert ConfUltimate.getInstance().getConfig()["conf_commun_list"] == ["conf2"]
+    assert ConfUltimate.get_instance().get_config()["conf1"] == "test"
+    assert ConfUltimate.get_instance().get_config()["conf2"] == "test"
+    assert ConfUltimate.get_instance().get_config()["conf_commun"] == "conf2"
+    assert ConfUltimate.get_instance().get_config()["conf_commun_list"] == ["conf2"]
     ConfUltimate.clean()
     
     with pytest.raises(Exception):
-        ConfUltimate.getConfig()
+        ConfUltimate.get_instance().get_config()
     
 
 
