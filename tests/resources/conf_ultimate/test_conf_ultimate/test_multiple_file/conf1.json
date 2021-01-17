@@ -1,0 +1,5 @@
+{
+    "conf1": "test",
+    "conf_commun": "conf1",
+    "conf_commun_list": ["conf1"]
+}
