@@ -9,7 +9,7 @@ INSTALL_REQUIRES = (HERE / "requirements.txt").read_text().splitlines()
 TESTS_REQUIRE = (HERE / "test-requirements.txt").read_text().splitlines()[1:]
 
 NAME = "confultimate"
-VERSION = "0.2.4"
+VERSION = "0.2.5"
 
 setup(
     name=NAME,
